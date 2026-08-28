@@ -335,7 +335,7 @@ func SetAdminRequireStableOffsets(val bool) (ao AdminOptionRequireStableOffsets)
 // AdminOptionMatchConsumerGroupStates decides groups in which state(s) should be
 // listed.
 //
-// Default: nil (lists groups in all states).
+// Default: nil or empty slice (lists groups in all states).
 //
 // Valid for ListConsumerGroups.
 type AdminOptionMatchConsumerGroupStates struct {
@@ -373,7 +373,7 @@ func (ao AdminOptionMatchConsumerGroupStates) apply(cOptions *C.rd_kafka_AdminOp
 // SetAdminMatchConsumerGroupStates sets the state(s) that must be
 // listed.
 //
-// Default: nil (lists groups in all states).
+// Default: nil or empty slice (lists groups in all states).
 //
 // Valid for ListConsumerGroups.
 func SetAdminMatchConsumerGroupStates(val []ConsumerGroupState) (ao AdminOptionMatchConsumerGroupStates) {
@@ -385,7 +385,7 @@ func SetAdminMatchConsumerGroupStates(val []ConsumerGroupState) (ao AdminOptionM
 // AdminOptionMatchConsumerGroupTypes decides the type(s) that must be
 // listed.
 //
-// Default: nil (lists groups of all types).
+// Default: nil or empty slice (lists groups of all types).
 //
 // Valid for ListConsumerGroups.
 type AdminOptionMatchConsumerGroupTypes struct {
@@ -423,7 +423,7 @@ func (ao AdminOptionMatchConsumerGroupTypes) apply(cOptions *C.rd_kafka_AdminOpt
 // SetAdminMatchConsumerGroupTypes set the type(s) that must be
 // listed.
 //
-// Default: nil (lists groups of all types).
+// Default: nil or empty slice (lists groups of all types).
 //
 // Valid for ListConsumerGroups.
 func SetAdminMatchConsumerGroupTypes(val []ConsumerGroupType) (ao AdminOptionMatchConsumerGroupTypes) {
