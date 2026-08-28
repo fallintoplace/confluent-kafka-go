@@ -480,6 +480,26 @@ func testAdminAPIsListConsumerGroups(
 			what, listres, err)
 	}
 
+	testEmptyFilter := func(option ListConsumerGroupsAdminOption, filter string) {
+		ctx, cancel := context.WithTimeout(context.Background(), expDuration)
+		defer cancel()
+		listres, err := a.ListConsumerGroups(
+			ctx, SetAdminRequestTimeout(time.Second), option)
+		if err == nil {
+			t.Fatalf("%s: Expected ListConsumerGroups with empty %s filter to fail, but got result: %v, err: %v",
+				what, filter, listres, err)
+		}
+		if ctx.Err() != context.DeadlineExceeded {
+			t.Fatalf("%s: Expected DeadlineExceeded for empty %s filter, not %v",
+				what, filter, ctx.Err())
+		}
+	}
+
+	testEmptyFilter(
+		SetAdminMatchConsumerGroupStates([]ConsumerGroupState{}), "state")
+	testEmptyFilter(
+		SetAdminMatchConsumerGroupTypes([]ConsumerGroupType{}), "type")
+
 	// Successful call
 	ctx, cancel = context.WithTimeout(context.Background(), expDuration)
 	defer cancel()

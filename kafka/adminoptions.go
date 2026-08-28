@@ -347,7 +347,7 @@ func (ao AdminOptionMatchConsumerGroupStates) supportsListConsumerGroups() {
 }
 
 func (ao AdminOptionMatchConsumerGroupStates) apply(cOptions *C.rd_kafka_AdminOptions_t) error {
-	if !ao.isSet || ao.val == nil {
+	if !ao.isSet || len(ao.val) == 0 {
 		return nil
 	}
 
@@ -397,7 +397,7 @@ func (ao AdminOptionMatchConsumerGroupTypes) supportsListConsumerGroups() {
 }
 
 func (ao AdminOptionMatchConsumerGroupTypes) apply(cOptions *C.rd_kafka_AdminOptions_t) error {
-	if !ao.isSet || ao.val == nil {
+	if !ao.isSet || len(ao.val) == 0 {
 		return nil
 	}
 
